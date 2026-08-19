@@ -4,86 +4,657 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<meta name="description" content="A quiet personal essay about someone who makes ordinary days matter.">
-<title>The Person Hidden in Ordinary Days</title>
+<meta name="description" content="A personal science essay about memory, the people who stay, and the future we hope they find.">
+<title>The People We Remember</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
-:root{--text:#242424;--muted:#757575;--line:#e5e5e5;--accent:#6f547d;--soft:#fafafa}
+
+:root{
+  --bg:#fff;
+  --ink:#222;
+  --body:#3f3f3f;
+  --muted:#777;
+  --line:#dedede;
+  --soft:#f8f8f8;
+  --accent:#5f4d68;
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#fff;color:var(--text);font-family:"DM Sans",Arial,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
-.progress{position:fixed;top:0;left:0;height:3px;width:0;background:#242424;z-index:100}
-.topbar{height:58px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);z-index:90}
-.brand{font-weight:600;font-size:.95rem;letter-spacing:-.01em}.topmeta{font-size:.72rem;color:var(--muted)}
-.article{width:min(680px,calc(100% - 36px));margin:0 auto;padding:12vh 0 15vh}
-.header{padding-bottom:7vh}
-.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.66rem;color:var(--muted);margin-bottom:1.5rem}
-h1,h2,.deck,.pull,.closing h2{font-family:"Playfair Display",Georgia,serif}
-h1{font-size:clamp(3.2rem,8vw,5.8rem);line-height:1.03;font-weight:500;margin:0 0 1.4rem;letter-spacing:-.035em}
-.deck{font-size:clamp(1.25rem,2.7vw,1.55rem);line-height:1.5;color:#555;max-width:620px}
-.author{display:flex;align-items:center;gap:12px;margin-top:2.2rem;font-size:.78rem;color:var(--muted)}
-.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#242424,#aaa)}
-.meta{font-size:.72rem;color:var(--muted);margin-top:.3rem}
-.article-body{font-size:1.11rem;line-height:1.9;color:#2f2f2f}
-.chapter{padding:6.5vh 0 1vh}
-h2{font-size:clamp(2rem,5vw,3.05rem);line-height:1.15;font-weight:500;margin:0 0 1.8rem;letter-spacing:-.02em}
-p{margin:0 0 1.55rem}
-.chapter p{margin-bottom:1.55rem}
-.pull{margin:4rem -8vw;padding:2.5rem 4rem;border-left:3px solid #242424;font-size:clamp(1.65rem,4vw,2.45rem);line-height:1.38;color:var(--accent)}
-.divider{text-align:center;color:#aaa;letter-spacing:.5em;margin:5rem 0;font-size:.8rem}
-.closing{text-align:center;padding-top:8vh;border-top:1px solid var(--line)}
-.quiet{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.25rem,3vw,1.7rem);line-height:1.6;color:#666}
-.final-line{margin-top:5rem;font-family:"Playfair Display",Georgia,serif;font-size:clamp(2.5rem,6vw,4.8rem);line-height:1.1;color:#242424}
-.signature{font-family:"Playfair Display",Georgia,serif;font-style:italic;color:var(--muted);margin-top:1.5rem}
-@media(max-width:760px){.article{padding-top:8vh}.pull{margin:3rem 0;padding:1.7rem 1.4rem}.topbar{padding:0 18px}.article-body{font-size:1.05rem;line-height:1.85}}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"DM Sans",Arial,sans-serif;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:#e9e4eb}
+.progress{
+  position:fixed;top:0;left:0;height:3px;width:0;
+  background:#222;z-index:100;
+}
+.topbar{
+  height:58px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4.5vw;position:sticky;top:0;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(12px);z-index:90;
+}
+.brand{font-weight:600;font-size:.9rem;letter-spacing:-.01em}
+.toplinks{display:flex;gap:24px;align-items:center;font-size:.68rem;color:#666}
+.toplinks span{cursor:default}
+.article{width:min(1040px,calc(100% - 44px));margin:0 auto;padding:10vh 0 13vh}
+.hero{text-align:center;padding:4vh 0 8vh;border-bottom:1px solid var(--line)}
+.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:.62rem;color:var(--muted);margin-bottom:1.35rem}
+h1,h2,.deck,.pull,.closing,.note-title{font-family:"Playfair Display",Georgia,serif}
+h1{
+  font-size:clamp(3.1rem,7vw,6rem);line-height:1.02;
+  font-weight:500;letter-spacing:-.045em;margin:0 auto 1.3rem;
+  max-width:850px;
+}
+.deck{
+  font-size:clamp(1.15rem,2.3vw,1.42rem);line-height:1.5;
+  color:#666;max-width:670px;margin:0 auto;font-style:italic;
+}
+.byline{margin-top:2rem;font-size:.72rem;color:#666}
+.byline strong{color:#222;font-weight:500}
+.content{max-width:900px;margin:0 auto}
+.intro{
+  padding:7vh 0 6vh;
+  max-width:700px;
+  margin:0 auto;
+  text-align:left;
+}
+.article-body{font-size:1rem;line-height:1.82;color:var(--body)}
+p{margin:0 0 1.25rem}
+.chapter{
+  display:grid;
+  grid-template-columns:42% 58%;
+  gap:5vw;
+  padding:6vh 0;
+  border-top:1px solid var(--line);
+  align-items:center;
+}
+.chapter.reverse{grid-template-columns:58% 42%}
+.chapter.reverse .copy{order:2}
+.chapter.reverse .visual{order:1}
+.number{
+  font-size:.62rem;letter-spacing:.15em;color:#777;margin-bottom:.8rem;
+}
+h2{
+  font-size:clamp(2rem,4vw,3.2rem);
+  line-height:1.1;font-weight:500;letter-spacing:-.025em;margin:0 0 1.5rem;
+}
+.copy p{margin-bottom:1.25rem}
+.visual{
+  min-height:300px;
+  display:flex;align-items:center;justify-content:center;
+}
+.note{
+  margin:2rem 0;padding:1.15rem 1.3rem;
+  border-left:2px solid #333;background:#fafafa;
+}
+.note-title{
+  font-size:1.05rem;margin-bottom:.55rem;
+}
+.note p{font-size:.9rem;line-height:1.65;color:#666;margin:0}
+.pull{
+  margin:2.5rem 0;padding:1.3rem 1.4rem;
+  border-left:2px solid #333;
+  font-size:1.45rem;line-height:1.4;color:var(--accent);
+}
+.quote-wide{
+  padding:5vh 8vw;
+  margin:1vh 0 4vh;
+  text-align:center;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.quote-wide p{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(1.45rem,3vw,2rem);
+  line-height:1.45;font-style:italic;color:#555;margin:0;
+}
+
+/* SVG visual language */
+svg{width:100%;max-width:500px;height:auto}
+.svg-line{stroke:#999;stroke-width:1;fill:none}
+.svg-dark{stroke:#333;stroke-width:1.2;fill:none}
+.svg-light{stroke:#c9c9c9;stroke-width:1;fill:none}
+.svg-dot{fill:#333}
+.svg-text{font-family:"DM Sans",Arial,sans-serif;font-size:10px;fill:#777}
+.svg-serif{font-family:"Playfair Display",Georgia,serif;font-size:14px;fill:#333}
+.svg-italic{font-family:"Playfair Display",Georgia,serif;font-size:12px;font-style:italic;fill:#777}
+
+/* Brain sketch */
+.brain{filter:grayscale(1)}
+/* Association map */
+.map-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;fill:#888}
+
+/* Future timeline */
+.future-section{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:7vh 0;
+  margin:2vh 0 7vh;
+}
+.future-inner{
+  max-width:900px;margin:auto;
+  display:grid;grid-template-columns:42% 58%;gap:5vw;align-items:center;
+}
+.future-copy h2{margin-bottom:1.5rem}
+.future-copy p{margin-bottom:1.2rem}
+.future-hope{
+  margin-top:2rem;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.35rem;line-height:1.55;
+  font-style:italic;color:#555;
+}
+.closing{
+  text-align:center;
+  padding:9vh 0 2vh;
+}
+.closing p{
+  color:#686868;font-size:1.15rem;line-height:1.65;
+  margin-bottom:1rem;
+}
+.final-line{
+  margin-top:4rem;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(2.4rem,5.5vw,4.7rem);
+  line-height:1.08;letter-spacing:-.035em;color:#222;
+}
+.signature{
+  margin-top:1.1rem;color:#888;font-size:.75rem;
+  font-family:"Playfair Display",Georgia,serif;font-style:italic;
+}
+.divider{text-align:center;color:#aaa;letter-spacing:.45em;margin:5vh 0;font-size:.7rem}
+
+@media(max-width:760px){
+  .article{width:min(100% - 34px,700px);padding-top:5vh}
+  .topbar{padding:0 17px}
+  .toplinks{gap:12px}
+  .hero{padding-top:2vh}
+  .chapter,.chapter.reverse,.future-inner{
+    display:block;padding:7vh 0;
+  }
+  .chapter.reverse .copy,.chapter.reverse .visual{order:initial}
+  .visual{min-height:230px;margin-top:2.5rem}
+  .intro{padding-top:6vh}
+  .article-body{font-size:.98rem;line-height:1.8}
+  .quote-wide{padding:4vh 2vw}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
+
 <body>
 <div class="progress"></div>
-<header class="topbar"><div class="brand">A little something.</div><div class="topmeta">Personal essay</div></header>
+
+<header class="topbar">
+  <div class="brand">A little something.</div>
+  <div class="toplinks"><span>Essay</span><span>Notes</span><span>About</span></div>
+</header>
+
 <main class="article">
-<section class="header">
-<div class="eyebrow">A personal essay</div>
-<h1>The Person Hidden in Ordinary Days</h1>
-<div class="deck">A quiet reflection on the kind of person who becomes part of ordinary days without ever asking to.</div>
-<div class="author"><div class="avatar"></div><div><strong>Written by 690juta</strong><div class="meta">September 29, 2026 · 9 min read</div></div></div>
+
+<section class="hero">
+  <div class="eyebrow">A personal science essay</div>
+  <h1>The People We Remember</h1>
+  <div class="deck">
+    A quiet exploration of memory, the people who become part of it,
+    and the things we hope they never forget about themselves.
+  </div>
+  <div class="byline">
+    <strong>Written by 690juta</strong> &nbsp;·&nbsp; September 29, 2026 &nbsp;·&nbsp; 12 min read
+  </div>
 </section>
-<div class="article-body">
-<p>There are people who enter your life with a lot of noise.</p>
-<p>They arrive with stories, big moments, unforgettable beginnings.</p>
-<p>And then there are people who somehow become part of your ordinary days.</p>
-<p>Quietly.</p>
-<p>Without asking for much attention.</p>
-<p>I think she is one of those people.</p>
-<p>I don't remember exactly when she became important to me.</p>
-<p>Maybe there wasn't a particular moment.</p>
-<p>Maybe it was all the small ones.</p>
-<p>The conversations that weren't supposed to mean much, but somehow stayed with me.</p>
-<p>The little things she told me.</p>
-<p>The places she wanted to see.</p>
-<p>The stories she loved.</p>
-<p>The things that made her happy.</p>
-<p>Somehow, I started remembering things about her that I probably wouldn't remember about anyone else.</p>
-<p>And maybe that's how someone becomes important.</p>
-<p>Not all at once.</p>
-<p>But in fragments.</p>
-<p>Until one day, those fragments become a person you care about more than you ever realized.</p>
-<div class="divider">· · ·</div>
-<section class="chapter"><h2>The stories she loves</h2><p>There are stories that stay with people.</p><p><em>Coco.</em><br><em>Tangled.</em><br><em>Aladdin.</em></p><p>I don't know exactly what makes certain stories become part of us.<br><br>Maybe it's the characters.<br>Maybe it's the feeling they leave behind.<br>Or maybe, sometimes, we recognize a small part of ourselves in them.</p><p>One is about remembering.<br>One is about finding the light.<br>And one is about discovering a whole new world.</p><p>Maybe growing up is a little bit of all three.<br><br>Remembering where we came from.<br>Finding our light when things become dark.<br>And still having the courage to step into a world we haven't seen yet.</p><p>I hope she never stops doing that.<br>I hope there are still so many worlds waiting for her.</p><div class="pull">Remembering where we came from.<br>Finding our light.<br>And still having the courage to discover a new world.</div></section><section class="chapter"><h2>Somewhere by the sea</h2><p>She likes the sea.<br><br>And fish.</p><p>I don't know what she sees when she looks at the ocean.<br><br>Maybe it's the quiet.<br>Maybe it's the freedom.<br>Maybe it's simply the feeling of having enough space to breathe.</p><p>There is something comforting about standing somewhere so vast and realizing that, for a moment, nothing is asking anything from you.</p><p>I hope she always finds places like that.<br><br>Places where she doesn't have to explain herself.<br>Places where she doesn't have to be strong all the time.<br>Places where she can simply exist.</p><p>Some days can be waves.<br>Some days can be still.</p><div class="pull">Both are still her.</div></section><section class="chapter"><h2>The places she hasn't been yet</h2><p>There are still so many places she hasn't seen.</p><p>Oceans from unfamiliar shores.<br>Cities she's never walked through.<br>Little cafés she's never discovered.<br>Quiet streets.<br>Beautiful sunsets.<br>Unexpected conversations.<br>Moments that were never part of the plan.</p><p>I hope life keeps giving her reasons to say,</p><p>>&ldquo;I'm glad I came here.&rdquo;</p><p>Not because every journey has to be beautiful.<br><br>It won't be.<br><br>Some places will hurt.<br>Some seasons will be difficult.<br>Some days will feel heavier than they should.</p><p>But I hope there are always more places ahead than behind.<br>More things to discover.<br>More versions of herself waiting somewhere along the way.</p><div class="pull">I hope there are always more places ahead than behind.</div></section><section class="chapter"><h2>When things become heavy</h2><p>There is something I've learned about caring for someone.</p><p>Sometimes, when life becomes difficult, the person you care about doesn't come closer.<br><br>She disappears.</p><p>Maybe she needs space.<br>Maybe she doesn't want anyone to see her hurting.<br>Maybe she believes she has to figure things out on her own.</p><p>I remember how, when things at work became too much for her, she sometimes chose to distance herself.</p><p>Maybe she thought she needed to deal with it on her own.<br>Maybe she didn't want anyone to see her that way.</p><p>I understand.</p><p>But if I could tell her one thing, it would be this:<br><br><strong>She never has to hide the difficult parts of herself from me.</strong></p><p>She doesn't have to wait until she's okay before coming back.<br>She doesn't have to find the right words.<br><br>She can come angry.<br>She can come tired.<br>She can come confused.<br>She can come without knowing what to say.</p><p>And if all she can do is cry,<br><br><strong>then cry.</strong></p><p>I'll stay.</p><p>I won't pretend that seeing someone I care about hurting doesn't hurt me too.<br><br>It does.<br><br>I might even cry when I see her cry.</p><p>Because caring about someone means that sometimes her sadness finds its way into me too.</p><p>But she doesn't have to protect me from her sadness.<br><br><strong>Let me be there, even when she's not okay.</strong></p><p>At the same time, I know that being vulnerable with me may not always feel comfortable for her.</p><p>And if, when things become heavy, she would rather face them on her own —<br><br>that's okay too.<br><br>I understand.</p><p>I won't take her distance as proof that she doesn't care about me.</p><p>And I hope she never mistakes my respecting her decision for me not caring about her.</p><p><strong>I care. I just also respect her.</strong></p><p>If she needs space, I'll give her space.<br>If she needs someone, I'll come.</p><p>And if someday she doesn't know which one she needs,<br><br>she doesn't have to figure it out perfectly before reaching out.</p><div class="pull">If she needs space, I'll give her space.<br>If she needs someone, I'll come.</div></section><section class="chapter"><h2>The person behind all those little things</h2><p>Eventually, all the things she likes become less interesting to me than <strong>the person who likes them.</strong></p><p>The movies.<br>The sea.<br>The little things that make her happy.</p><p>They're just windows.</p><p>What I started noticing was everything behind them.</p><p>Her patience.<br>Her kindness.<br>The way she cares.<br>The way she keeps going.<br>The softness she doesn't always seem to notice in herself.</p><p>Maybe she doesn't always see those things.<br>Maybe sometimes she even forgets they're there.</p><p>But something doesn't become less true simply because the person carrying it can't see it.</p><p><strong>I see it.</strong><br><br>And I hope one day, she will too.</p><div class="pull">I see it.<br>And I hope one day, she will too.</div></section><section class="chapter"><h2>What she taught me without knowing</h2><p>People don't always realize the things they teach us.</p><p>Sometimes they don't teach us anything deliberately.<br><br>They simply exist in our lives long enough for something to change.</p><p>She taught me to be softer.<br><br>For myself.<br>And for other people.</p><p>She taught me that caring doesn't always mean having the right words.</p><p>Sometimes it's remembering.<br>Sometimes it's listening.<br>Sometimes it's showing up.<br>Sometimes it's simply being there without asking for anything in return.</p><p>And sometimes, caring means knowing when to step back.</p><p>Without ever realizing it,<br><strong>she made me a little better than I was before.</strong></p><p>And I think that's something I'll always be grateful for.</p><div class="pull">She made me a little better than I was before.</div></section><section class="chapter"><h2>What I hope life gives her</h2><p>I hope she meets people who recognize her worth without making her question it first.</p><p>People who make her feel safe enough to be herself.<br>People who celebrate her without asking her to become smaller.<br>People who stay gentle with her heart.</p><p>People who see her.<br>Hear her.<br>Respect her.<br>Appreciate her.<br>Support her.<br>Love her.<br>Protect her.</p><p>Because being loved shouldn't feel like something that has to be earned every day.</p><p>And when difficult days come —<br>because they will —<br>I hope she remembers that she doesn't have to carry every difficult thing alone.</p><div class="pull">Being loved shouldn't feel like something that has to be earned every day.</div></section><section class="chapter"><h2>For whatever comes next</h2><p>There is one thing I hope for her more than anything else.</p><p>Someday, in whatever form life chooses to bring it to her,</p><p><strong>I hope she meets someone who loves her even more deeply than I do today.</strong></p><p>Someone who chooses her.<br>Understands her.<br>Protects her heart.<br>Reminds her of her worth on the days she forgets it herself.</p><p><strong>Someone who loves her more than I know how to love her now.</strong></p><p>And if that day ever comes,<br><br>I hope she lets herself be loved completely.</p><p>Because caring about someone doesn't always mean knowing what their future should look like.</p><p>Sometimes, it simply means hoping that life is gentle with them.</p><p>Hoping they meet people who see them, hear them, respect them, and treat them well.</p><p>Hoping they find places where they can be completely themselves.</p><p>And hoping that, whatever comes next, they never forget how worthy they are of being loved, supported, and cared for.</p><p>I don't hope she has the perfect life.<br>I don't hope nothing ever hurts.<br>I don't hope everything goes exactly according to plan.</p><p>I just hope that wherever she ends up,<br>whatever she chooses,<br>whoever she becomes,<br><br><strong>she is happy.</strong></p><div class="pull">I hope she meets someone who loves her even more deeply than I do today.</div></section><section class="chapter"><h2>The flower</h2><p>There is a flower at the end of this little story.</p><p><strong>An aster.</strong></p><p>A flower that blooms in its own season, quietly carrying its own kind of beauty.</p><p>Maybe that's something worth remembering too.</p><p>She doesn't have to have everything figured out.<br>She doesn't have to bloom according to someone else's season.</p><p>She can take her time.<br>Change her mind.<br>Grow in directions nobody expected.</p><p><strong>She is allowed to become whoever she is meant to be.</strong></p><p>And I'll be rooting for her.<br>Always.</p><div class="pull">She doesn't have to bloom according to someone else's season.</div></section><section class="chapter"><h2>One last thing</h2><p>There are people who make extraordinary moments memorable.</p><p>And then there are people who make ordinary moments matter.</p><p>I think the second kind might be rarer.</p><p>Because you don't always realize what they've given you until you look back and notice how many ordinary days quietly became better because they were there.</p><p>Maybe that's what this whole thing is about.</p><p>Not a grand gesture.<br>Not a perfect explanation.<br>Just gratitude.</p><p>For a person who happened to be there.<br>For the conversations.<br>For the little things.<br>For everything she taught me without knowing.</p><p>For the version of myself that became a little softer because she existed.</p><p>And if she ever forgets how much she means —<br>if life gets loud,<br>if things become difficult,<br>if she starts doubting herself —<br>I hope she remembers this:</p><p>Somewhere in this world,<br>there is someone who thinks her existence made ordinary days a little better.</p><p>Someone who is grateful that she happened to be here.<br>Someone who will always be rooting for her.</p><div class="pull">Somewhere in this world, there is someone who thinks her existence made ordinary days a little better.</div></section>
-<div class="divider">· · ·</div>
-<section class="closing">
-<p class="quiet">And maybe that is enough.</p>
-<p class="quiet">To be grateful that someone existed<br>and made ordinary days feel a little less ordinary.</p>
-<div class="final-line">Happy Birthday, my favorite part of normal days.</div>
-<div class="signature">September 29, 2026</div>
+
+<div class="content">
+<div class="intro article-body">
+  <p>Human memory is selective.</p>
+  <p>
+    Every day, the brain encounters an enormous amount of information.
+    Faces. Voices. Conversations. Places. Sounds. Small movements.
+    Thousands of moments that could, in theory, become memories.
+  </p>
+  <p>Most of them disappear.</p>
+  <p>And yet, somehow, there are people we remember.</p>
+  <p>Sometimes we don't even know why.</p>
+
+  <div class="note">
+    <div class="note-title">Memory note · 01</div>
+    <p>
+      Memory is not a perfect recording of the past. What we remember is
+      influenced by attention, emotion, context, meaning, and the cues that
+      help us retrieve an experience later.
+    </p>
+  </div>
+
+  <p>This makes me wonder about something much more personal.</p>
+  <p>Why do certain people stay?</p>
+  <p>
+    Not necessarily the people who arrived with the biggest moments.
+    Not necessarily the people who changed our lives in obvious ways.
+  </p>
+  <p>Sometimes, it is simply someone who became part of our ordinary days.</p>
+  <p>And somehow, the ordinary became worth remembering.</p>
+</div>
+
+<section class="chapter">
+  <div class="copy article-body">
+    <div class="number">01</div>
+    <h2>What makes a memory stay?</h2>
+    <p>
+      One of the strange things about memory is that importance is not always
+      measured by how extraordinary an event was.
+    </p>
+    <p>
+      An ordinary conversation can stay with us longer than an important
+      meeting. A small gesture can become more memorable than an entire day.
+    </p>
+    <p>Meaning matters.</p>
+    <p>Emotion matters.</p>
+    <p>And perhaps, sometimes, the person involved matters most of all.</p>
+    <p>I think that is why I remember her.</p>
+    <p>
+      I don't remember one single moment when she became important to me.
+      There was no dramatic beginning.
+    </p>
+    <p>There were just fragments.</p>
+    <p>
+      Little things she told me. The stories she loved. The places she wanted
+      to see. The things that made her happy.
+    </p>
+    <p>Things that, objectively, should be easy to forget.</p>
+    <p>Somehow, I didn't.</p>
+  </div>
+
+  <div class="visual">
+    <svg viewBox="0 0 500 360" class="brain" aria-label="Minimal scientific sketch of the brain and memory">
+      <path class="svg-dark" d="M185 235 C145 220 130 175 148 139 C161 112 189 96 220 99 C237 70 283 64 311 88 C343 87 370 111 373 141 C398 163 392 207 364 224 C349 246 319 255 293 247 C263 266 219 261 198 246 Z"/>
+      <path class="svg-line" d="M224 101 C210 125 216 151 201 171 C188 188 198 210 217 221"/>
+      <path class="svg-line" d="M258 86 C247 113 258 132 246 153 C234 174 245 192 235 219"/>
+      <path class="svg-line" d="M296 85 C286 111 299 126 289 147 C278 168 292 188 282 211"/>
+      <path class="svg-line" d="M333 105 C318 124 331 145 318 164 C305 184 318 202 309 229"/>
+      <path class="svg-line" d="M151 153 C174 159 182 143 201 149"/>
+      <path class="svg-line" d="M146 185 C169 190 182 178 198 187"/>
+      <path class="svg-line" d="M207 238 C224 225 238 236 253 228"/>
+      <path class="svg-line" d="M260 230 C276 218 292 233 307 221"/>
+      <path class="svg-line" d="M318 225 C337 214 348 219 362 207"/>
+      <path class="svg-dark" d="M248 203 C258 182 279 175 296 185 C308 193 307 215 294 226 C278 239 254 226 248 203Z"/>
+      <circle class="svg-dot" cx="275" cy="202" r="3"/>
+      <line class="svg-line" x1="275" y1="202" x2="430" y2="120"/>
+      <line class="svg-line" x1="250" y1="164" x2="430" y2="185"/>
+      <line class="svg-line" x1="220" y1="130" x2="430" y2="70"/>
+      <text class="svg-italic" x="434" y="70">meaning</text>
+      <text class="svg-italic" x="434" y="124">emotion</text>
+      <text class="svg-italic" x="434" y="189">memory trace</text>
+      <text class="svg-text" x="250" y="315" text-anchor="middle">Emotion can make an experience easier to remember.</text>
+    </svg>
+  </div>
 </section>
+
+<div class="quote-wide">
+  <p>Maybe some people become memories before we even realize they have become important.</p>
+</div>
+
+<section class="chapter reverse">
+  <div class="copy article-body">
+    <div class="number">02</div>
+    <h2>The brain does not store a person</h2>
+    <p>
+      We often talk about remembering someone as if the mind keeps a complete
+      copy of them somewhere inside us.
+    </p>
+    <p>But memory is more complicated than that.</p>
+    <p>
+      We remember pieces. A face. A voice. A sentence. A place. A feeling.
+      A particular afternoon. A song. A smell. A story.
+    </p>
+    <p>
+      And when one of those pieces appears again, an entire network of
+      associations can suddenly return.
+    </p>
+    <p>
+      Maybe that's why remembering someone doesn't always mean remembering
+      them directly.
+    </p>
+    <p>Sometimes it's a song.</p>
+    <p>A place.</p>
+    <p>A sentence.</p>
+    <p>A story.</p>
+    <p>A particular kind of silence.</p>
+    <p>And suddenly, somehow, they're there again.</p>
+  </div>
+
+  <div class="visual">
+    <svg viewBox="0 0 500 360" aria-label="Associative memory network">
+      <line class="svg-line" x1="250" y1="180" x2="90" y2="75"/>
+      <line class="svg-line" x1="250" y1="180" x2="75" y2="180"/>
+      <line class="svg-line" x1="250" y1="180" x2="105" y2="292"/>
+      <line class="svg-line" x1="250" y1="180" x2="410" y2="75"/>
+      <line class="svg-line" x1="250" y1="180" x2="425" y2="180"/>
+      <line class="svg-line" x1="250" y1="180" x2="395" y2="292"/>
+      <circle class="svg-dark" cx="250" cy="180" r="42"/>
+      <circle class="svg-dark" cx="90" cy="75" r="31"/>
+      <circle class="svg-dark" cx="75" cy="180" r="31"/>
+      <circle class="svg-dark" cx="105" cy="292" r="31"/>
+      <circle class="svg-dark" cx="410" cy="75" r="31"/>
+      <circle class="svg-dark" cx="425" cy="180" r="31"/>
+      <circle class="svg-dark" cx="395" cy="292" r="31"/>
+      <text class="svg-serif" x="250" y="185" text-anchor="middle">her</text>
+      <text class="svg-text" x="90" y="79" text-anchor="middle">a story</text>
+      <text class="svg-text" x="75" y="184" text-anchor="middle">a place</text>
+      <text class="svg-text" x="105" y="296" text-anchor="middle">a sound</text>
+      <text class="svg-text" x="410" y="79" text-anchor="middle">a feeling</text>
+      <text class="svg-text" x="425" y="184" text-anchor="middle">a sentence</text>
+      <text class="svg-text" x="395" y="296" text-anchor="middle">a small moment</text>
+      <text class="svg-italic" x="250" y="340" text-anchor="middle">Fragments. Together, they are there again.</text>
+    </svg>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="copy article-body">
+    <div class="number">03</div>
+    <h2>Memory is not a photograph</h2>
+    <p>
+      There is another strange thing about memory:
+      remembering is not the same as replaying.
+    </p>
+    <p>
+      Every time we remember something, we approach it from where we are now.
+      The person remembering today is not exactly the person who experienced
+      the moment then.
+    </p>
+    <p>Which means memories change with us.</p>
+    <p>Perhaps that is not a flaw.</p>
+    <p>Perhaps it is simply what makes memory human.</p>
+    <div class="note">
+      <div class="note-title">Memory note · 02</div>
+      <p>
+        Remembering can involve reconstruction rather than literal playback.
+        Our current emotions, knowledge, and context can influence how a past
+        experience is recalled.
+      </p>
+    </div>
+    <p>
+      And maybe this is why I don't want to remember her only as a collection
+      of moments.
+    </p>
+    <p>I want to remember what those moments taught me.</p>
+    <p>Her patience.</p>
+    <p>Her kindness.</p>
+    <p>The way she keeps going.</p>
+    <p>The softness she doesn't always seem to notice in herself.</p>
+  </div>
+
+  <div class="visual">
+    <svg viewBox="0 0 500 360" aria-label="Memory reconstruction sketch">
+      <path class="svg-light" d="M55 230 C120 170 160 245 220 190 C270 145 315 205 370 155 C420 110 455 155 475 125"/>
+      <path class="svg-dark" d="M55 230 C120 190 165 230 220 205 C275 180 315 195 370 170 C420 145 452 155 475 145"/>
+      <circle class="svg-dot" cx="55" cy="230" r="3"/>
+      <circle class="svg-dot" cx="220" cy="205" r="3"/>
+      <circle class="svg-dot" cx="370" cy="170" r="3"/>
+      <circle class="svg-dot" cx="475" cy="145" r="3"/>
+      <text class="svg-text" x="55" y="260" text-anchor="middle">experience</text>
+      <text class="svg-text" x="220" y="235" text-anchor="middle">remembered</text>
+      <text class="svg-text" x="370" y="200" text-anchor="middle">reconstructed</text>
+      <text class="svg-text" x="475" y="175" text-anchor="middle">today</text>
+      <text class="svg-italic" x="250" y="310" text-anchor="middle">A memory is not a photograph. It is a reconstruction.</text>
+    </svg>
+  </div>
+</section>
+
+<div class="quote-wide">
+  <p>Some memories preserve what happened. The meaningful ones sometimes preserve what changed in us.</p>
+</div>
+
+<section class="chapter reverse">
+  <div class="copy article-body">
+    <div class="number">04</div>
+    <h2>The memory of a person can become part of ourselves</h2>
+    <p>
+      Autobiographical memories are not only records of what happened to us.
+      They can become part of the story we tell about who we are.
+    </p>
+    <p>
+      And sometimes, someone appears in that story without ever knowing how
+      much they changed its direction.
+    </p>
+    <p>She taught me to be softer.</p>
+    <p>
+      To listen a little more. To remember little things. To understand that
+      caring does not always mean having the right words.
+    </p>
+    <p>Sometimes it means showing up.</p>
+    <p>Sometimes it means giving someone space.</p>
+    <p>
+      Sometimes it means simply letting them know that they do not have to
+      be okay before they are allowed to be cared for.
+    </p>
+    <p>Without ever intending to,</p>
+    <p><strong>she made me a little better than I was before.</strong></p>
+  </div>
+
+  <div class="visual">
+    <svg viewBox="0 0 500 360" aria-label="Identity and memory diagram">
+      <circle class="svg-dark" cx="250" cy="175" r="82"/>
+      <circle class="svg-light" cx="175" cy="115" r="52"/>
+      <circle class="svg-light" cx="325" cy="115" r="52"/>
+      <circle class="svg-light" cx="175" cy="235" r="52"/>
+      <circle class="svg-light" cx="325" cy="235" r="52"/>
+      <text class="svg-serif" x="250" y="180" text-anchor="middle">self</text>
+      <text class="svg-text" x="175" y="119" text-anchor="middle">memory</text>
+      <text class="svg-text" x="325" y="119" text-anchor="middle">people</text>
+      <text class="svg-text" x="175" y="239" text-anchor="middle">meaning</text>
+      <text class="svg-text" x="325" y="239" text-anchor="middle">change</text>
+      <text class="svg-italic" x="250" y="315" text-anchor="middle">Some people become part of the story we tell about ourselves.</text>
+    </svg>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="copy article-body">
+    <div class="number">05</div>
+    <h2>What I hope you remember about yourself</h2>
+    <p>
+      Maybe this is the part where the science becomes less interesting than
+      the person who inspired the question.
+    </p>
+    <p>
+      Because if memory is selective, then there are things worth choosing
+      to remember.
+    </p>
+    <p>I hope you remember that you are capable.</p>
+    <p>I hope you remember your kindness.</p>
+    <p>
+      I hope you remember the strength it took to keep going through days
+      that nobody else could see.
+    </p>
+    <p>I hope you remember that being tired does not make you weak.</p>
+    <p>That needing space does not make you difficult to love.</p>
+    <p>That changing your mind does not mean you have failed.</p>
+    <p>And that you are allowed to become someone you have never been before.</p>
+  </div>
+
+  <div class="visual">
+    <svg viewBox="0 0 500 360" aria-label="Personal note illustration">
+      <rect x="95" y="65" width="310" height="220" rx="2" fill="#fff" stroke="#cfcfcf"/>
+      <path class="svg-light" d="M95 95 H405"/>
+      <text class="svg-italic" x="250" y="145" text-anchor="middle">I hope you always remember</text>
+      <text class="svg-italic" x="250" y="169" text-anchor="middle">that you are enough,</text>
+      <text class="svg-italic" x="250" y="193" text-anchor="middle">even on the days you don't feel like it.</text>
+      <text class="svg-text" x="250" y="250" text-anchor="middle">a note worth keeping</text>
+    </svg>
+  </div>
+</section>
+
+<div class="quote-wide">
+  <p>I hope you remember yourself the way I remember you.</p>
+</div>
+
+<section class="future-section">
+  <div class="future-inner">
+    <div class="future-copy article-body">
+      <div class="number">06</div>
+      <h2>The future is a memory we haven't made yet</h2>
+      <p>Memory usually asks us to look backward.</p>
+      <p>
+        But thinking about someone you care about can make you look forward.
+      </p>
+      <p>
+        Toward places they haven't seen. People they haven't met.
+        Versions of themselves they haven't become.
+      </p>
+      <p>
+        When I think about her future, I don't know what it will look like.
+      </p>
+      <p>I don't know where she'll live. What she'll choose. Who she'll become.</p>
+      <p>And I don't need to know.</p>
+    </div>
+
+    <div class="visual">
+      <svg viewBox="0 0 520 330" aria-label="Past present future timeline">
+        <line class="svg-dark" x1="65" y1="150" x2="455" y2="150"/>
+        <circle class="svg-dark" cx="115" cy="150" r="5"/>
+        <circle class="svg-dark" cx="260" cy="150" r="7"/>
+        <circle class="svg-dark" cx="410" cy="150" r="5"/>
+        <line class="svg-light" x1="115" y1="150" x2="115" y2="105"/>
+        <line class="svg-light" x1="260" y1="150" x2="260" y2="105"/>
+        <line class="svg-light" x1="410" y1="150" x2="410" y2="105"/>
+        <text class="svg-serif" x="115" y="82" text-anchor="middle">past</text>
+        <text class="svg-serif" x="260" y="82" text-anchor="middle">present</text>
+        <text class="svg-serif" x="410" y="82" text-anchor="middle">future</text>
+        <text class="svg-text" x="115" y="185" text-anchor="middle">what we remember</text>
+        <text class="svg-text" x="260" y="185" text-anchor="middle">where we are now</text>
+        <text class="svg-text" x="410" y="185" text-anchor="middle">what we hope for</text>
+        <path class="svg-light" d="M410 150 C440 135 455 105 470 75"/>
+        <text class="svg-italic" x="360" y="255" text-anchor="middle">Memory looks back.</text>
+        <text class="svg-italic" x="360" y="278" text-anchor="middle">But hope always looks forward.</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="article-body" style="max-width:760px;margin:4rem auto 0;">
+    <p>I hope life becomes kinder to you.</p>
+    <p>
+      I hope you find places where you feel safe enough to be completely
+      yourself.
+    </p>
+    <p>
+      I hope you meet people who understand you without asking you to become
+      smaller.
+    </p>
+    <p>
+      People who see your patience, your kindness, your softness, and your
+      strength.
+    </p>
+    <p>I hope you meet someone who loves you more deeply than I know how to love you now.</p>
+    <p>Someone who chooses you, not only when life is easy, but when it isn't.</p>
+    <p>Someone who understands the parts of you that are difficult to explain.</p>
+    <p>Someone who reminds you of your worth on the days you forget it.</p>
+    <p>And if that person comes into your life, I hope you let yourself be loved completely.</p>
+    <p>
+      Not because what came before was not enough.
+      But because I hope your future gives you even more reasons to believe
+      that you deserve good things.
+    </p>
+
+    <div class="pull">
+      I don't know what your future will look like.<br>
+      I only hope life is gentle with you when you get there.
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="copy article-body">
+    <div class="number">07</div>
+    <h2>If memory has a purpose</h2>
+    <p>
+      Scientists can study how memories are encoded, stored, retrieved, and
+      reconstructed.
+    </p>
+    <p>
+      We can describe mechanisms. We can map associations. We can study why
+      some experiences become more memorable than others.
+    </p>
+    <p>But there is a question science cannot answer for me:</p>
+    <p><em>What makes a person worth remembering?</em></p>
+    <p>I think the answer is different for everyone.</p>
+    <p>For me, sometimes it is simply this:</p>
+    <p>Someone existed in my life.</p>
+    <p>And because she did,</p>
+    <p>some ordinary days became a little less ordinary.</p>
+    <div class="note">
+      <div class="note-title">A final observation</div>
+      <p>
+        Perhaps the most meaningful memories are not necessarily the loudest
+        ones. Sometimes they are the quiet experiences that become part of
+        the way we understand ourselves and the people we care about.
+      </p>
+    </div>
+  </div>
+
+  <div class="visual">
+    <svg viewBox="0 0 500 360" aria-label="Memory and hope visual">
+      <circle class="svg-light" cx="250" cy="170" r="110"/>
+      <path class="svg-dark" d="M170 205 C210 150 250 220 290 165 C320 125 350 145 375 105"/>
+      <circle class="svg-dot" cx="170" cy="205" r="4"/>
+      <circle class="svg-dot" cx="290" cy="165" r="4"/>
+      <circle class="svg-dot" cx="375" cy="105" r="4"/>
+      <text class="svg-serif" x="170" y="240" text-anchor="middle">memory</text>
+      <text class="svg-serif" x="290" y="200" text-anchor="middle">meaning</text>
+      <text class="svg-serif" x="375" y="82" text-anchor="middle">hope</text>
+      <text class="svg-italic" x="250" y="300" text-anchor="middle">Memory keeps pieces of the past.</text>
+      <text class="svg-italic" x="250" y="322" text-anchor="middle">Hope keeps believing in the future.</text>
+    </svg>
+  </div>
+</section>
+
+<div class="closing">
+  <p>So if someday you read this again,</p>
+  <p>I hope you don't remember me first.</p>
+  <p>I hope you remember <strong>yourself</strong>.</p>
+  <p>
+    The person who was kind. The person who was capable.
+    The person who kept going. The person who deserved good things.
+    The person who still had so many places to go.
+  </p>
+  <p>
+    And if memory has taught me anything,
+    it is that the things worth remembering are rarely the loudest ones.
+  </p>
+  <p>Sometimes,</p>
+  <p>they are simply the things that mattered.</p>
+
+  <div class="divider">· · ·</div>
+
+  <p>Maybe memory is how we keep pieces of the past.</p>
+  <p>And maybe hope is how we keep believing in someone's future.</p>
+  <p>
+    I will remember many things about you.
+    But more than anything, I hope you always remember yourself.
+  </p>
+
+  <div class="final-line">Happy birthday, my favorite of normal days.</div>
+  <div class="signature">September 29, 2026</div>
+</div>
+
 </div>
 </main>
+
 <script>
 const bar=document.querySelector('.progress');
-function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max?Math.min(100,scrollY/max*100):0)+'%'}
-addEventListener('scroll',updateProgress,{passive:true});addEventListener('resize',updateProgress);updateProgress();
+function updateProgress(){
+  const max=document.documentElement.scrollHeight-innerHeight;
+  bar.style.width=(max?Math.min(100,scrollY/max*100):0)+'%';
+}
+addEventListener('scroll',updateProgress,{passive:true});
+addEventListener('resize',updateProgress);
+updateProgress();
 </script>
 </body>
 </html>
