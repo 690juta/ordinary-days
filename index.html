@@ -186,9 +186,88 @@ svg{width:100%;max-width:500px;height:auto}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+
+<style>
+#countdown-gate{
+  min-height:calc(100vh - 58px);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:60px 20px;background:#fff;
+}
+#countdown-gate[hidden]{display:none}
+.countdown-inner{width:min(680px,100%)}
+.countdown-eyebrow{
+  text-transform:uppercase;letter-spacing:.22em;font-size:.62rem;
+  color:#777;margin-bottom:28px;
+}
+.countdown-title{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(2.8rem,7vw,5.6rem);line-height:1.02;
+  font-weight:500;letter-spacing:-.045em;margin:0 0 22px;color:#222;
+}
+.countdown-subtitle{
+  font-family:"Playfair Display",Georgia,serif;font-style:italic;
+  color:#666;font-size:clamp(1.05rem,2.4vw,1.3rem);
+  line-height:1.55;margin:0 auto;max-width:560px;
+}
+.countdown-date{
+  margin-top:46px;font-family:"Playfair Display",Georgia,serif;
+  font-size:1.15rem;color:#444;
+}
+.countdown-grid{
+  display:flex;justify-content:center;align-items:flex-start;
+  gap:clamp(12px,3vw,30px);margin:34px auto 0;
+}
+.countdown-unit{min-width:62px}
+.countdown-number{
+  font-family:"Playfair Display",Georgia,serif;font-size:clamp(2rem,5vw,3.1rem);
+  line-height:1;color:#222;
+}
+.countdown-label{
+  margin-top:9px;text-transform:uppercase;letter-spacing:.14em;
+  font-size:.52rem;color:#888;
+}
+.countdown-divider{
+  font-family:"Playfair Display",Georgia,serif;font-size:2rem;
+  color:#bbb;line-height:1;
+}
+.countdown-line{width:54px;height:1px;background:#ccc;margin:34px auto 0}
+.countdown-note{
+  margin-top:30px;color:#888;font-family:"Playfair Display",Georgia,serif;
+  font-size:1rem;font-style:italic;
+}
+@media(max-width:520px){
+  #countdown-gate{padding:50px 16px}
+  .countdown-grid{gap:7px}
+  .countdown-unit{min-width:48px}
+  .countdown-divider{font-size:1.35rem}
+}
+</style>
+
 </head>
 
 <body>
+
+<div id="countdown-gate" aria-label="Countdown until the essay is available">
+  <div class="countdown-inner">
+    <div class="countdown-eyebrow">A study waiting to be read</div>
+    <h1 class="countdown-title">The People We Remember</h1>
+    <p class="countdown-subtitle">Some things are worth waiting for.</p>
+    <div class="countdown-date">September 29, 2026</div>
+    <div class="countdown-grid" aria-live="polite">
+      <div class="countdown-unit"><div class="countdown-number" id="cd-days">--</div><div class="countdown-label">days</div></div>
+      <div class="countdown-divider">:</div>
+      <div class="countdown-unit"><div class="countdown-number" id="cd-hours">--</div><div class="countdown-label">hours</div></div>
+      <div class="countdown-divider">:</div>
+      <div class="countdown-unit"><div class="countdown-number" id="cd-minutes">--</div><div class="countdown-label">minutes</div></div>
+      <div class="countdown-divider">:</div>
+      <div class="countdown-unit"><div class="countdown-number" id="cd-seconds">--</div><div class="countdown-label">seconds</div></div>
+    </div>
+    <div class="countdown-line"></div>
+    <div class="countdown-note">Until the day this was meant to be read.</div>
+  </div>
+</div>
+<div id="essay-content" hidden>
+
 <div class="progress"></div>
 
 <header class="topbar">
@@ -656,5 +735,55 @@ addEventListener('scroll',updateProgress,{passive:true});
 addEventListener('resize',updateProgress);
 updateProgress();
 </script>
+
+
+</div>
+
+<script>
+(function(){
+  const releaseAt = new Date("2026-09-29T00:00:00+07:00").getTime();
+  const gate = document.getElementById("countdown-gate");
+  const essay = document.getElementById("essay-content");
+  const ids = {
+    days: document.getElementById("cd-days"),
+    hours: document.getElementById("cd-hours"),
+    minutes: document.getElementById("cd-minutes"),
+    seconds: document.getElementById("cd-seconds")
+  };
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+
+  function reveal(){
+    gate.hidden = true;
+    essay.hidden = false;
+    const bar = document.querySelector(".progress");
+    function update(){
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if(bar) bar.style.width = (max ? Math.min(100, scrollY/max*100) : 0) + "%";
+    }
+    addEventListener("scroll", update, {passive:true});
+    addEventListener("resize", update);
+    update();
+  }
+
+  function update(){
+    const remaining = releaseAt - Date.now();
+    if(remaining <= 0){
+      reveal();
+      clearInterval(timer);
+      return;
+    }
+    const total = Math.floor(remaining/1000);
+    ids.days.textContent = String(Math.floor(total/86400));
+    ids.hours.textContent = pad(Math.floor((total%86400)/3600));
+    ids.minutes.textContent = pad(Math.floor((total%3600)/60));
+    ids.seconds.textContent = pad(total%60);
+  }
+
+  const timer = setInterval(update,1000);
+  update();
+})();
+</script>
+
 </body>
 </html>
